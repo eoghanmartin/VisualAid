@@ -4,7 +4,6 @@ import android.util.Log;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 
 public class TCPClient {
 
@@ -24,7 +23,6 @@ public class TCPClient {
     public TCPClient(OnMessageReceived listener) {
         mMessageListener = listener;
     }
-
     /**
      * Sends the message entered by client to the server
      * @param message text entered by client
@@ -71,11 +69,10 @@ public class TCPClient {
                         //call the method messageReceived from MyActivity class
                         mMessageListener.messageReceived(serverMessage);
                     }
+                    Log.e("RESPONSE FROM SERVER", "S: Received Message: '" + serverMessage + "'");
                     serverMessage = null;
 
                 }
-
-                Log.e("RESPONSE FROM SERVER", "S: Received Message: '" + serverMessage + "'");
 
             } catch (Exception e) {
 
@@ -95,8 +92,6 @@ public class TCPClient {
 
     }
 
-    //Declare the interface. The method messageReceived(String message) will must be implemented in the MyActivity
-    //class at on asynckTask doInBackground
     public interface OnMessageReceived {
         public void messageReceived(String message);
     }

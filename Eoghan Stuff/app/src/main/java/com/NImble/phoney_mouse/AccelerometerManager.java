@@ -15,10 +15,9 @@ public class AccelerometerManager {
 
     private static Context aContext=null;
 
-
     /** Accuracy configuration */
     private static float threshold  = 20.0f;
-    private static int interval     = 900;
+    private static int interval     = 5000;
 
     private static Sensor sensor;
     private static SensorManager sensorManager;
@@ -96,7 +95,6 @@ public class AccelerometerManager {
      */
     public static void startListening( AccelerometerListener accelerometerListener )
     {
-
         sensorManager = (SensorManager) aContext.
                 getSystemService(Context.SENSOR_SERVICE);
 
@@ -115,8 +113,6 @@ public class AccelerometerManager {
 
             listener = accelerometerListener;
         }
-
-
     }
 
     /**

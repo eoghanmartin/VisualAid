@@ -1,0 +1,11 @@
+# Created by .gitignore support plugin (hsz.mobi)
+
+.idea/
+build/
+gradle/
+mojoy/
+
+Eoghan Stuff.iml
+gradlew.bat
+gradlew
+import-summary.txt

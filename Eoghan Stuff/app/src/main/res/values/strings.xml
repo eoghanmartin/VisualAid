@@ -23,5 +23,6 @@
     <string name="gesturePad">Gesture Pad</string>
     <string name="mediacontrols">Controls</string>
     <string name="shake">Shake</string>
+    <string name="location"></string>
 
 </resources>

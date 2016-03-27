@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 from cameras import (StereoPair, CalibratedPair)
-from calibration import StereoCalibration
+from calibrate_import import StereoCalibration
 from blockmatcher import BlockMatcher
 from point_cloud import PointCloud
 from image_analysis import ImageAnalysis

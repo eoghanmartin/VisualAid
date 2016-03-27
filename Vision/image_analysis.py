@@ -50,7 +50,6 @@ class ImageAnalysis(object):
         img2, self.contours, self.hierarchy = cv2.findContours(dst, cv2.RETR_CCOMP , cv2.CHAIN_APPROX_NONE)
 
     def image_location(self):
-        pdb.set_trace()
         # Front right
         if self.maxLoc[0] > self.center_point[0]:
             if self.maxLoc[1] > self.center_point[1]:

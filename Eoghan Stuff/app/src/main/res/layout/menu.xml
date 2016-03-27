@@ -23,7 +23,7 @@
         android:layout_marginRight="30dp"
         
         android:gravity="center"
-        android:text="Flappy Bird"
+        android:text="Start"
         android:textSize="30sp"/>
 
     <Button
@@ -38,34 +38,6 @@
         
         android:gravity="center"
         android:text="@string/macroDefine"
-        android:textSize="30sp" />
-    
-    <Button
-        android:id="@+id/mediaTest"
-        android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/macroDefine"
-        android:layout_centerHorizontal="true"
-      
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        
-        android:gravity="center"
-        android:text="Don't Fall"
-        android:textSize="30sp" />
-    
-    <Button
-        android:id="@+id/controls"
-        android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/mediaTest"
-        android:layout_centerHorizontal="true"
-      
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        
-        android:gravity="center"
-        android:text="@string/mediacontrols"
         android:textSize="30sp" />
 
 </RelativeLayout>
