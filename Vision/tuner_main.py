@@ -33,13 +33,8 @@ def main():
     input_files = find_files(args.image_folder)
     block_matcher = BlockMatcher(settings=settings)
     image_pair = [cv2.imread(image) for image in input_files[:2]]
-
-    gray1 = cv2.cvtColor(image_pair[0], cv2.COLOR_BGR2GRAY)
-    gray2 = cv2.cvtColor(image_pair[1], cv2.COLOR_BGR2GRAY)
-
-    gray_frames = [gray1, gray2]
         
-    tuner = BMTuner(block_matcher, calibration, gray_frames)
+    tuner = BMTuner(block_matcher, calibration, image_pair)
 
     if args.bm_settings:
         block_matcher.save_settings(args.bm_settings)

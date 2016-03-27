@@ -19,6 +19,7 @@ from cameras import (StereoPair, CalibratedPair)
 from calibration import StereoCalibration
 from blockmatcher import BlockMatcher
 from point_cloud import PointCloud
+from image_analysis import ImageAnalysis
 
 import pdb
 
@@ -104,9 +105,24 @@ def main():
         for i in range(10):
             pair.show_frames(1)
 
-        disparity_image = block_matcher.get_disparity(gray_frames)
+        disparity_image = block_matcher.get_disparity(frames)
 
-        print 'generating 3d point cloud...'
+        print "Post filter disparity map for locations..."
+
+        imgCopy = disparity_image.copy()
+
+        analysis = ImageAnalysis(imgCopy)
+        
+        cv2.circle(analysis.image_analyse, analysis.maxLoc, 51, analysis.BLUE, 2)
+        cv2.drawContours(analysis.image_analyse, analysis.contours, -1, analysis.BLUE, 2)
+
+        f_height = np.size(analysis.image_analyse, 0)
+        f_width = np.size(analysis.image_analyse, 1)
+        dim = (f_width/2, f_height/2)
+        resized = cv2.resize(analysis.image_analyse, dim)
+        cv2.imshow("Contours", resized)
+
+        print "Generating 3d point cloud..."
 
         camera_pair = CalibratedPair(None,
                                 StereoCalibration(input_folder=args.calibration_folder),
@@ -120,10 +136,8 @@ def main():
         image_path = os.path.join(args.output_folder, "image_left.jpg")
         find_label(image_path)
 
-        """
         if cv2.waitKey(0) & 0xFF == ord('q'):
             continue
-        """
 
 if __name__ == "__main__":
     main()
