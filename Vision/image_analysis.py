@@ -11,6 +11,14 @@ class ImageAnalysis(object):
     def __init__(self, disparity):
         self.image_analyse = np.uint8(disparity)
 
+        self.height = np.size(disparity, 0)
+        self.width = np.size(disparity, 1)
+        self.center_point = [(self.width/2), (self.height/2)]
+        self.bottom_left = [0, self.height]
+        self.bottom_right = [self.width, self.height]
+        self.slope_right = float(self.center_point[1]-self.bottom_left[1])/(self.center_point[0]-self.bottom_left[0])
+        self.slope_left = float(self.center_point[1]-self.bottom_right[1])/(self.center_point[0]-self.bottom_right[0])
+
         self.minVal = 0
         self.maxVal = 0
         self.minLoc = 0
@@ -40,3 +48,45 @@ class ImageAnalysis(object):
         maxValue = 255
         th, dst = cv2.threshold(image, thresh, maxValue, cv2.THRESH_BINARY);
         img2, self.contours, self.hierarchy = cv2.findContours(dst, cv2.RETR_CCOMP , cv2.CHAIN_APPROX_NONE)
+
+    def image_location(self):
+        pdb.set_trace()
+        # Front right
+        if self.maxLoc[0] > self.center_point[0]:
+            if self.maxLoc[1] > self.center_point[1]:
+                y_intercept = self.slope_right * self.maxLoc[0]
+                if self.maxLoc[1] > y_intercept:
+                    return "front"
+        # Front left
+        if self.maxLoc[0] < self.center_point[0]:
+            if self.maxLoc[1] > self.center_point[1]:
+                y_intercept = self.slope_left * self.maxLoc[0]
+                if self.maxLoc[1] > y_intercept:
+                    return "front"
+        # Front center rectangle
+        front_rect_top = 0 + self.height/3
+        front_rect_left = self.width + self.width/3
+        front_rect_right = self.width - self.width/3
+        if self.maxLoc[0] < front_rect_right:
+            if self.maxLoc[0] > front_rect_left:
+                if self.maxLoc[1] > front_rect_top:
+                    return "front"
+        # Top right
+        if self.maxLoc[0] > self.center_point[0]:
+            if self.maxLoc[1] < self.center_point[1]:
+                y_intercept = self.slope_left * self.maxLoc[0]
+                if self.maxLoc[1] < y_intercept:
+                    return "top"
+        # Top left
+        if self.maxLoc[0] < self.center_point[0]:
+            if self.maxLoc[1] < self.center_point[1]:
+                y_intercept = self.slope_right * self.maxLoc[0]
+                if self.maxLoc[1] < y_intercept:
+                    return "top"
+        # Left
+        if self.maxLoc[0] < self.center_point[0]:
+            return "left"
+        # Right
+        if self.maxLoc[0] > self.center_point[0]:
+            return "right"
+        return "none"

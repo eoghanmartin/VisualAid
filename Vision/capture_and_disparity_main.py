@@ -2,14 +2,6 @@
 
 from argparse import ArgumentParser
 import os
-import base64
-import httplib2
-
-from apiclient.discovery import build
-from oauth2client.client import GoogleCredentials
-
-import logging
-logging.basicConfig()
 
 import cv2
 
@@ -20,10 +12,9 @@ from calibration import StereoCalibration
 from blockmatcher import BlockMatcher
 from point_cloud import PointCloud
 from image_analysis import ImageAnalysis
+from vision_api import VisionAPI
 
 import pdb
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join("", 'service.json')
 
 def main():
     parser = ArgumentParser()
@@ -47,36 +38,6 @@ def main():
     property uchar blue
     end_header
     '''
-
-    def find_label(photo_file):
-
-        API_DISCOVERY_FILE = 'https://vision.googleapis.com/$discovery/rest?version=v1'
-        http = httplib2.Http()
-
-        credentials = GoogleCredentials.get_application_default().create_scoped(
-          ['https://www.googleapis.com/auth/cloud-platform'])
-        credentials.authorize(http)
-
-        service = build('vision', 'v1', http=http, discoveryServiceUrl=API_DISCOVERY_FILE)
-
-        with open(photo_file, 'rb') as image:
-            image_content = base64.b64encode(image.read())
-            service_request = service.images().annotate(
-              body={
-                'requests': [{
-                  'image': {
-                    'content': image_content
-                   },
-                  'features': [{
-                    'type': 'LABEL_DETECTION',
-                    'maxResults': 1,
-                   }]
-                 }]
-              })
-            response = service_request.execute()
-            label = response['responses'][0]['labelAnnotations'][0]['description']
-            print('Found label: %s for %s' % (label, photo_file))
-            return 0
 
     def write_ply(fn, verts, colors):
         verts = verts.reshape(-1, 3)
@@ -118,9 +79,13 @@ def main():
 
         f_height = np.size(analysis.image_analyse, 0)
         f_width = np.size(analysis.image_analyse, 1)
-        dim = (f_width/2, f_height/2)
+        dim = (f_width/2, f_height/2)        
         resized = cv2.resize(analysis.image_analyse, dim)
         cv2.imshow("Contours", resized)
+
+        location = analysis.image_location()
+
+        print "Closest object is: " + location
 
         print "Generating 3d point cloud..."
 
@@ -134,7 +99,10 @@ def main():
         print "PLY file written."
 
         image_path = os.path.join(args.output_folder, "image_left.jpg")
-        find_label(image_path)
+        api = VisionAPI()
+        label = api.find_label(image_path)
+
+        print('Found label: %s for %s' % (label, "image_left"))
 
         if cv2.waitKey(0) & 0xFF == ord('q'):
             continue
