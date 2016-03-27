@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MoJoy</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="left">Left Click</string>
+    <string name="right">Right Click</string>
+    <string name="macro1">Select</string>
+    <string name="macro2">Start</string>
+    <string name="macro3">Menu</string>
+    <string name="macro4">Macro</string>
+    <string name="macro5">Macro</string>
+    <string name="macro6">Macro</string>
+    <string name="main">Start</string>
+    <string name="macroDefine">Connect</string>
+    <string name="noAccelerometer">No Accelerometer Found</string>
+    <string name="exit">Exit App</string>
+    <string name="hello_world">Hello!</string>
+    <string name="scan">Scan</string>
+    <string name="menu_settings">Settings</string>
+    <string name="mediaMode">Media Mode</string>
+    <string name="gesturePad">Gesture Pad</string>
+    <string name="mediacontrols">Controls</string>
+    <string name="shake">Shake</string>
+
+</resources>

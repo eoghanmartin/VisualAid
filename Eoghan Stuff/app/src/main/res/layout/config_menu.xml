@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg" >
+
+    <LinearLayout
+        android:id="@+id/Vtable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:weightSum="10" >
+        
+        <LinearLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:id="@+id/lean_back1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Htable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:id="@+id/lean_back1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lean Back"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/text2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/back"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Htable2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/lean_forward1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lean Forward"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/text3"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/forward"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Htable3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/lean_right1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lean Right"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/text4"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/right"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Htable4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/lean_left1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lean Left"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/text5"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/left"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Htable5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/lean_sprint1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sprint"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/text6"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/sprint"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+       
+        <LinearLayout
+            android:id="@+id/Htable7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/buttonA1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button A"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:id="@+id/text7"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/buttonA"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Htable8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/buttonB1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button B"
+                android:textColor="#FFFFFF" />
+
+			<LinearLayout
+                android:id="@+id/text8"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/buttonB"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+	            
+			</LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/Htable9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/shake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shake"
+                android:textColor="#FFFFFF" />
+            
+            <LinearLayout
+                android:id="@+id/text9"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            android:gravity="right" >
+
+	            <EditText
+	                android:id="@+id/shakeB"
+	                android:layout_width="70dp"
+	                android:layout_height="wrap_content"
+	                android:inputType="text"
+                    android:textSize="20sp" />
+
+	            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
