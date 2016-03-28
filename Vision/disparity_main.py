@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 
 from blockmatcher import BlockMatcher
-from calibration import StereoCalibration
+from calibrate_import import StereoCalibration
 from cameras import CalibratedPair
 from image_analysis import ImageAnalysis
 

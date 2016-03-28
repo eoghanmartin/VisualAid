@@ -28,8 +28,7 @@ def main():
     camera_pair = CalibratedPair(None,
                                 StereoCalibration(input_folder=calib_folder),
                                 block_matcher)
-    rectified_pair = camera_pair.calibration.rectify(image_pair)
-    points = camera_pair.get_point_cloud(rectified_pair)
+    points = camera_pair.get_point_cloud(image_pair)
     points = points.filter_infinity()
     points.write_ply(args.output)
 
