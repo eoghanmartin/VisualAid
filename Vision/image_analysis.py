@@ -64,7 +64,7 @@ class ImageAnalysis(object):
                     return "front"
         # Front center rectangle
         front_rect_top = 0 + self.height/3
-        front_rect_left = self.width + self.width/3
+        front_rect_left = 0 + self.width/3
         front_rect_right = self.width - self.width/3
         if self.maxLoc[0] < front_rect_right:
             if self.maxLoc[0] > front_rect_left:

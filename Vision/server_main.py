@@ -11,7 +11,6 @@ from twisted.internet.protocol import Factory, Protocol
 from twisted.internet import reactor
 from time import sleep
 import time
-from pykeyboard import PyKeyboard
 
 from cameras import (StereoPair, CalibratedPair)
 from calibrate_import import StereoCalibration
@@ -119,7 +118,7 @@ class ConnectionClass(Protocol):
 
         print('Found label: %s for %s' % (label, "image_left"))
 
-        return location
+        return location + ":" + str(analysis.maxLoc[0]) + "," + str(analysis.maxLoc[1])
 
 if __name__ == "__main__":
 
@@ -140,8 +139,6 @@ if __name__ == "__main__":
     output_folder = args.output_folder
     bm_settings = args.bm_settings
     ply_file = args.ply_file
-
-    kb=PyKeyboard()
 
     factory = Factory()
     factory.protocol = ConnectionClass

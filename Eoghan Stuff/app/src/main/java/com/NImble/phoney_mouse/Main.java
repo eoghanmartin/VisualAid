@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class Main  extends Activity implements AccelerometerListener
 {
@@ -59,11 +60,9 @@ public class Main  extends Activity implements AccelerometerListener
 
         arrayList = new ArrayList<String>();
 
-		//Sensor init
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         accSen = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        //relate the listView from java to the one created in xml
         mList = (ListView)findViewById(R.id.list);
 
         mAdapter = new ObjectLocationUpdater(this, arrayList);
@@ -96,11 +95,9 @@ public class Main  extends Activity implements AccelerometerListener
 					b.setBackgroundResource(R.drawable.start_not);
 					vibr = true;
 				}
-
 				if (vibr == true){
 					vib.vibrate(100);
 				}
-
 				return false;
 				}
 		});
@@ -139,29 +136,135 @@ public class Main  extends Activity implements AccelerometerListener
         }
     }
 
-	//From TCP
 	public class connectTask extends AsyncTask<String,String,TCPClient> {
 	    @Override
 	    protected TCPClient doInBackground(String... message) {
 		    mTcpClient = new TCPClient(new TCPClient.OnMessageReceived() {
 	            @Override
-	            //here the messageReceived method is implemented
 	            public void messageReceived(String message) {
 	                publishProgress(message);
-                    // TODO IMPLEMENT VIBRATIONS BASED ON RECIEVED VALUE...
-
-                    //TextView locationVal = (TextView)findViewById(R.id.location);
-                    //locationVal.setText(message);
 
                     final Vibrator vib = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
                     Log.d("Message Recieved: ", message);
 
-                    //vib.vibrate(700);
+                    String[] parts = message.split(":");
+                    String locationArea = parts[0];
+                    if(parts.length > 1) {
+                        String[] coords = parts[1].split(",");
+                        int y_value = Integer.parseInt(coords[1]);
+                        Log.d(coords[0], coords[1]);
 
-                    long[] pattern = genVibratorPattern(0.9f, 1000);
-                    vib.vibrate(pattern, -1);
+                        long[] pattern = genVibratorPattern(1.0f, 2000);
 
+                        if (locationArea.equals("left")) {
+                            pattern = genVibratorPattern(1.0f, 500);
+                            // Left height is at 960
+                            int left_height = 960;
+                            if (y_value < (left_height / 3)) {
+                                for (int i =0;i<2;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Log.d("Vibration wait: ", "Waiting between vibrations.");
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else if (y_value < ((left_height / 3) * 2)) {
+                                for (int i =0;i<1;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                vib.vibrate(pattern, -1);
+                            }
+                        }
+                        if (locationArea.equals("right")) {
+                            pattern = genVibratorPattern(0.5f, 500);
+                            // Right height is at 960
+                            int right_height = 960;
+                            if (y_value < (right_height / 3)) {
+                                for (int i =0;i<2;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else if (y_value < ((right_height / 3) * 2)) {
+                                for (int i =0;i<1;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                vib.vibrate(pattern, -1);
+                            }
+                        }
+                        if (locationArea.equals("front")) {
+                            pattern = genVibratorPattern(1.0f, 1000);
+                            // Front height is at 640
+                            int front_height = 640;
+                            if (y_value < (front_height / 3)) {
+                                for (int i =0;i<2;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else if (y_value < ((front_height / 3) * 2)) {
+                                for (int i =0;i<1;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                vib.vibrate(pattern, -1);
+                            }
+                        }
+                        if (locationArea.equals("top")) {
+                            pattern = genVibratorPattern(0.5f, 1000);
+                            // Top height is at 320
+                            int top_height = 320;
+                            if (y_value < (top_height / 3)) {
+                                for (int i =0;i<2;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else if (y_value < ((top_height / 3) * 2)) {
+                                for (int i =0;i<1;i++) {
+                                    vib.vibrate(pattern, -1);
+                                    try {
+                                        Thread.sleep(700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                vib.vibrate(pattern, -1);
+                            }
+                        } else {
+                            vib.vibrate(pattern, -1);
+                        }
+                    }
 	            }
 	        });
 	        mTcpClient.run();
@@ -170,11 +273,7 @@ public class Main  extends Activity implements AccelerometerListener
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-
-            //in the arrayList we add the messaged received from server
             arrayList.add(values[0]);
-            // notify the adapter that the data set has changed. This means that new message received
-            // from server was added to the list
             mAdapter.notifyDataSetChanged();
         }
         public long[] genVibratorPattern( float intensity, long duration )

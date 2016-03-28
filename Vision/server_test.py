@@ -28,7 +28,7 @@ class ConnectionClass(Protocol):
     def dataReceived(self, data):
         if "capture" in data:
             print "Running visual assist program..."
-            location = "test location\r\n"
+            location = "left:20,20\r\n"
             self.transport.write(location)
         else:
             print data
