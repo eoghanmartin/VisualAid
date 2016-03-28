@@ -4,12 +4,12 @@ import android.util.Log;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class TCPClient {
 
     private String serverMessage;
-    String gotString = "10.1.1.65"; // Global.stringToPass;
-    public String SERVERIP=gotString; // Your computer IP address
+    public static final String SERVERIP = "10.1.1.65"; //Global.stringToPass; //your computer IP address
     public static final int SERVERPORT = 8080;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
@@ -23,6 +23,7 @@ public class TCPClient {
     public TCPClient(OnMessageReceived listener) {
         mMessageListener = listener;
     }
+
     /**
      * Sends the message entered by client to the server
      * @param message text entered by client
@@ -39,9 +40,11 @@ public class TCPClient {
     }
 
     public void run() {
+
         mRun = true;
 
         try {
+            //here you must put your computer's IP address.
             InetAddress serverAddr = InetAddress.getByName(SERVERIP);
 
             Log.e("TCP Client", "C: Connecting...");
@@ -64,16 +67,15 @@ public class TCPClient {
                 //in this while the client listens for the messages sent by the server
                 while (mRun) {
                     serverMessage = in.readLine();
+                    Log.e("RESPONSE FROM SERVER", "S: Received Message: '" + serverMessage + "'");
 
                     if (serverMessage != null && mMessageListener != null) {
                         //call the method messageReceived from MyActivity class
                         mMessageListener.messageReceived(serverMessage);
                     }
-                    Log.e("RESPONSE FROM SERVER", "S: Received Message: '" + serverMessage + "'");
                     serverMessage = null;
 
                 }
-
             } catch (Exception e) {
 
                 Log.e("TCP", "S: Error", e);
@@ -92,6 +94,8 @@ public class TCPClient {
 
     }
 
+    //Declare the interface. The method messageReceived(String message) will must be implemented in the MyActivity
+    //class at on asynckTask doInBackground
     public interface OnMessageReceived {
         public void messageReceived(String message);
     }

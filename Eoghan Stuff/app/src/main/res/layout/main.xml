@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/flappy_bg"
-    android:clickable="false">
-
+    android:gravity="center">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
         <Button
             android:id="@+id/macro2"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
             android:text="@string/macro2"
             android:background="@drawable/start_not" />
-
-        <TextView
-            android:id="@+id/location"
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <ListView android:id="@+id/list"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp"
-            android:layout_marginLeft="50dp"
-            android:text="@string/location" />
-
-</RelativeLayout>
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:transcriptMode="alwaysScroll"
+            android:cacheColorHint="#00000000"
+            android:listSelector="@android:color/transparent"/>
+    </LinearLayout>
+</LinearLayout>
 
 

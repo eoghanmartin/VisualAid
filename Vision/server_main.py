@@ -27,6 +27,7 @@ class ConnectionClass(Protocol):
     def connectionMade(self):
         self.factory.clients.append(self)
         print "New client: ", self.factory.clients
+        self.transport.write("Connected\r\n")
 
     def connectionLost(self, reason):
         self.factory.clients.remove(self)
@@ -35,7 +36,7 @@ class ConnectionClass(Protocol):
         if "capture" in data:
             print "Running visual assist program..."
             location = self.run_main()
-            self.transport.write(location)
+            self.transport.write(location + "\r\n")
             return
         else:
             print data
@@ -121,8 +122,6 @@ class ConnectionClass(Protocol):
         return location
 
 if __name__ == "__main__":
-
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join("", 'service.json')
 
     parser = ArgumentParser()
     parser.add_argument("left", type=int)
