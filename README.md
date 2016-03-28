@@ -22,4 +22,6 @@ The application will grab the current frame from the web cams. It will then find
 - The disparity image is maniplated using the `morph_ops()` function to erode, dilate, open and close the specular noise in the image and get a more accurate result. The manipulated image is then analysed to find the areas in the scene that are closest to the cameras. These areas are returned to the user over WiFi in the Android application.
 - The disparity image is also used to build a 3D point cloud map of the depth in the scene. To do this the matrix from `input/disp_to_depth_mat.npy` is loaded. This point cloud file is exported to the application directory as `pointCloud.ply` and can be opened using [meshlab](http://meshlab.sourceforge.net/).
 
+The captured frames are then run against the Google Cloud Vision API to find objects in the scene. For the example image, this request returned a result of `Found label: wood burning stove`.
+
 The Android application displays the area where the object of interest is with the coordinates of the closest point in the scene. It then calculates the correct vibration sequence to run to convey the location of this object to the user.
