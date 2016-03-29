@@ -5,8 +5,8 @@ Project made up of a python server side application and Android client applicati
 ####Equipment
 
 - Two web cams are set up to simulate a stereo camera.
-- Android smart phine used for application control and user haptic feedback.
-- Local machine used to host python server application and connect web cams.
+- Android smart phone used for application control and user haptic feedback.
+- Local machine used to host python server application.
 
 ##How to use
 
