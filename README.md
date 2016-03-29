@@ -18,7 +18,12 @@ The Android application can be connected by scanning a QR code for the local IP 
 
 ##Output
 
-The application will grab the current frame from the web cams. It will then find the disparity map for these images using the settings in the `settings.json` file (these can be edited by running the `sh run_scripts.sh tuner` script). The disparity image is then used for two things:
+The application will grab the current frame from the web cams.
+
+![Left and right frames](http://i.imgur.com/pCFwWYd.png)
+Format: ![Alt Text](url)
+
+It will then find the disparity map for these images using the settings in the `settings.json` file (these can be edited by running the `sh run_scripts.sh tuner` script). The disparity image is then used for two things:
 - The disparity image is maniplated using the `morph_ops()` function to erode, dilate, open and close the specular noise in the image and get a more accurate result. The manipulated image is then analysed to find the areas in the scene that are closest to the cameras. These areas are returned to the user over WiFi in the Android application.
 - The disparity image is also used to build a 3D point cloud map of the depth in the scene. To do this the matrix from `input/disp_to_depth_mat.npy` is loaded. This point cloud file is exported to the application directory as `pointCloud.ply` and can be opened using [meshlab](http://meshlab.sourceforge.net/).
 
