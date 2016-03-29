@@ -36,6 +36,6 @@ The captured frames are then run against the Google Cloud Vision API to find obj
 
 The Android application is connected over TCP on WiFi to the python application. This application displays the area where the object of interest is with the coordinates of the closest point in the scene. The areas are shown in the image below.
 
-![Scene areas](http://i.imgur.com/vo7at67.png)
+![Scene areas](http://i.imgur.com/6JxiP0P.png)
 
 It then calculates the correct vibration sequence to run to convey the location of this object to the user.
