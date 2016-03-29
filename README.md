@@ -34,4 +34,8 @@ The disparity image is then used for two things:
 
 The captured frames are then run against the Google Cloud Vision API to find objects in the scene. For the example image, this request returned a result of `Found label: wood burning stove`.
 
-The Android application displays the area where the object of interest is with the coordinates of the closest point in the scene. It then calculates the correct vibration sequence to run to convey the location of this object to the user.
+The Android application is connected over TCP on WiFi to the python application. This application displays the area where the object of interest is with the coordinates of the closest point in the scene. The areas are shown in the image below.
+
+![Scene areas](http://i.imgur.com/vo7at67.png)
+
+It then calculates the correct vibration sequence to run to convey the location of this object to the user.
